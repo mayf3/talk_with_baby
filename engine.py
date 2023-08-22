@@ -33,7 +33,7 @@ class Engine():
         self._device_index = get_device_index()
 
         # mdoel
-        self._use_chatglm = False
+        self._use_chatglm = True
         self._tokenizer = None
         self._model = None
         self.init_chatglm()
@@ -67,11 +67,6 @@ class Engine():
         if self._use_chatglm:
             response, self._history = self._model.chat(self._tokenizer, text, self._history)
             return response
-        url = 'http://10.5.18.8:5000/chat'
-        data = {'chat_text': text}
-        response = requests.post(url, json=data)
-        result = response.json()
-        return result['response']
 
     def run(self):
         text = None
